@@ -1,0 +1,95 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Welcome! </title>
+{% endblock %}
+
+{% block content %}
+
+<br/><br/>
+
+<div class="container" style = "width:70%;">
+    <h1 style = "text-align: center"> Object Notification </h1>
+    
+    <br/>
+    {% if not object_list and not mySoldObject%}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <h1 style = "text-align:center;"> No notification </h1>
+        <br/>
+    </div>
+    {% endif %}
+
+    {% if object_list %}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <h2 style = "text-align: center"> Currently Bidding </h2>
+        <br/>
+        {% for object in object_list %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="min-height:250px">
+        {% else %}
+        <div class="row color2" style="min-height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{object[10]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Seller: </strong> <a href = '/object[1]'>{{object[1]}} </a></p>
+                <p> <strong> Current Price: </strong> ${{object[6]}} AUD</p>
+                <p> <strong> Bidder: </strong> {{object[5]}}</p>
+                <p> <strong> Buy Now Price: </strong> ${{object[7]}} AUD</p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "/object/{{object[0]}}"><button class="btn btn-primary">Info</button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        <br/>
+    </div>
+    {% endif %}
+        
+    {% if mySoldObject %}
+    <p> {{mySoldObject}} </p>
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <h2 style = "text-align: center"> Sold Object </h2>
+        <br/>
+        {% for object in mySoldObject %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="height:250px">
+        {% else %}
+        <div class="row color2" style="height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{object[10]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Buyer: </strong> <a href = '/{{object[5]}}'>{{object[5]}} </a></p>
+                <p> <strong> Sold Price: </strong> ${{object[6]}} AUD</p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "/{{username}}/delete_Object/{{object[0]}}"><button type="submit" class="btn btn-danger">Remove</button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        <br/>
+    </div>
+    {% endif %}
+        
+   
+        
+    <br/><br/><br/>
+    
+</div>
+
+{% endblock %}

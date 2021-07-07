@@ -1,0 +1,66 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> My Accomodation/Object </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:70%;">
+    
+    <!-- Accomodation  List -->
+    <br/>
+    <h1 style = "text-align: center"> My Objects </h1>
+    <br/>
+    
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <!-- Access each accomodation -->
+        {% if objectList %}
+        {% for object in objectList %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="height:250px">
+        {% else %}
+        <div class="row color2" style="height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{object[10]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Name: </strong> {{object[3]}}</p>
+                <p> <strong> Current Bidding Price: </strong> ${{object[5]}} AUD</p>
+                <p> <strong> Minimum Price: </strong> ${{object[4]}} AUD </p>
+                <p> <strong> Buy Now Price: </strong> ${{object[7]}} AUD </p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "/{{username}}/edit_Object/{{object[0]}}"><button class="btn btn-primary">Edit</button></a>
+                    <a href = "/{{username}}/delete_Object/{{object[0]}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        {% else %}
+        <div class="row">
+            <div class="col-md-12" style = "text-align: center">
+                <h2> No Objects at all! Add more, please.</h2>
+            </div>
+        </div>
+        <hr/>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12" style = "text-align: center">
+                <a href="/{{username}}/add_New_Object"><button class="btn btn-primary">Add more object</button></a>
+            </div>   
+        </div>
+        <br/>
+    </div>
+        
+    <br/><br/><br/>
+    
+</div>
+
+{% endblock %}

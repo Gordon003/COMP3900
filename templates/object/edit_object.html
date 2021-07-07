@@ -1,0 +1,92 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Editing Object </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style = "width:80%">
+    
+    <div class="row">
+        
+        <div class ="col-1"></div>
+        
+        <div class = "col-10">
+            <br/>
+            
+            <div class = "cover1" style="text-align: center;">
+                <br/>
+                
+                <! -- Title -->
+                <h1 style = "text-align: center"> Editing Object </h1>
+                <br/>
+                
+                <! -- Image -->
+                <div class = "row">
+                    <img src = "{{myObject[10]}}" style = "width:250px; height:200px;margin-left:auto; margin-right:auto">
+                </div>
+
+                <hr/>
+                
+                <!-- Address/Location -->
+                <h4> Address </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Address: </strong></label>
+                        <div class="col-6">
+                            <input name = "address" class="form-control" type="text" placeholder={{myObject[2]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="address">Update</button>
+                        </div>
+                        {% if error == 'address' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Address either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+                
+                <!-- Description -->
+                <h4> Desription </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Edit Desription: </strong></label>
+                        <div class="col-6">
+                            <textarea class="form-control" rows="5" name="description"> {{myObject[3]}} </textarea>   
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="description">Update</button>
+                        </div>
+                    </div>
+                    {% if error == 'description' %}
+                    <div class="col-12">
+                        <p style = "margin-top:5px;color:red;"> Description not inputed at all. </p>
+                    </div>
+                    {% endif %}
+                </form>
+                <hr/>
+
+            </div>
+        </div>
+            
+        <div class ="col-1"></div>
+        
+    </div>
+
+    <! -- Button -->
+    <div class="col-md-12" style = "text-align: center">
+        <a href="/{{user[0]}}/myObject"><button class="btn btn-primary" style="width:200px;"> Back </button></a>
+        <a href="/{{user[0]}}/myObject"><button class="btn btn-danger" style="width:200px;"> Delete </button></a>
+    </div>
+    
+    <br/>
+        
+</div>
+
+{% endblock %}

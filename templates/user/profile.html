@@ -1,0 +1,78 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href = "../static/css/main.css">
+<title> {{username}} </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style="margin-top:5%;">
+    
+    <div class = "row">
+
+        <div class="col-md-10 mx-auto">
+            
+            <div class="form-group row">
+                {% if error %}
+                <div class="col-md-12 mx-auto"><h1 style = "text-align: center"> {{username}} DOESN'T EXIST! </h1></div>
+                {% else %}
+                <!-- Left Part -->
+                <div class="col-sm-4 cover1">
+                    <br/>
+                    {% if otherUser %}
+                    <img src = "{{otherUser[5]}}" alt = {{otherUser}} style="height:200px; margin-left:15%;">
+                    <br/><br/>
+                    <h1 style ="Text-align:center;"> {{otherUser[0]}} </h1>
+                    {% else %}
+                    <img src = "{{user[5]}}" alt = {{user[5]}} style="height:200px; margin-left:15%;">
+                    <br/><br/>
+                    <h1 style ="Text-align:center;"> {{user[0]}} </h1>
+                    {% endif %}
+                </div>
+                
+                <!-- Right Part -->
+                <div class="col-sm-7 cover1">
+                    <br/>
+                    <h1 style ="text-align:center;"> Personal Information </h1>
+                    <hr/>
+                    {% if not otherUser %}
+                    <p> <strong> Email: </strong> {{user[3]}}</p>
+                    <p> <strong> Phone Number: </strong> {{user[1]}}</p>
+                    <p> <strong> Address: </strong> {{user[2]}}</p>
+                    <p> <strong> Balance: </strong> ${{user[4]}}</p>
+                    <div class="col-md-12" style = "text-align: center">
+                        <a href = "/{{username}}/recharge">
+                            <button class="btn btn-success">Recharge</button>
+                        </a>
+                        <a href = "/{{username}}/edit">
+                            <button class="btn btn-primary">Edit Personal Info</button>
+                        </a>
+                        <a href = "/logout">
+                            <button class="btn btn-danger">Logout</button>
+                        </a>
+                    </div>
+                    {% else %}
+                    <p> <strong> Email: </strong> {{otherUser[3]}}</p>
+                    <p> <strong> Phone Number: </strong> {{otherUser[1]}}</p>
+                    <p> <strong> Address: </strong> {{otherUser[2]}}</p>
+                    <div class="col-md-12" style = "text-align: center">
+                        <a href = "/{{username}}/report">
+                            <button class="btn btn-danger">Report</button>
+                        </a>
+                    </div>
+                    {% endif %}
+                    <br/>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>
+
+{% endblock %}

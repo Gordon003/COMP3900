@@ -1,0 +1,113 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Detail </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:90%;">
+    
+    <!-- Object -->
+    <br/>
+    <div class="col-12 cover1">
+        
+        <!-- Title -->
+        <br/> <h1 style="text-align: center"> Object Detail </h1> <hr/>
+        
+        <!-- Top Part --> 
+        <div class="row" style = "background-color: rgba(224,255,255,0.7); min-height:350px;">
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{objects[10]}}" style = "width:375px; height:300px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Owner: </strong> <a href = "/{{objects[1]}}"> {{objects[1]}} </a> </p>
+                <p> <strong> Address: </strong> {{objects[2]}} </p>
+                <p> <strong> Starting Price: </strong> ${{objects[4]}} AUD</p>
+                <p> <strong> Current Bidding Price: </strong> ${{objects[6]}} AUD</p>
+                <p> <strong> Buy Now Price: </strong> ${{objects[7]}} AUD</p>
+                <p> <strong> Type: </strong> {{objects[8]}} </p>
+                <p> <strong> Description: </strong> {{objects[3]}} </p> 
+                <br/>
+                <br/>
+            </div>
+        </div>
+        
+        <hr/>
+        
+        <!-- Middle Part --> 
+        <div class = "row">
+            <div class = "col-6">
+                <h3 style = "text-align:center;"> Other Images </h3>
+                <hr/>
+            </div>
+            <div class = "col-6">
+                <h3 style = "text-align:center;"> Bidding </h3>
+                <hr/>
+            </div>
+        </div>
+        
+        <!-- Bottom Part --> 
+        <div class = "row">
+            <div class = "col-6 row">
+                <div class = "col-4"></div>
+                <div class = "col-4">
+                    <img src = "{{objects[11]}}" style = "width:125px; height:100px;">
+                </div>
+                <div class = "col-4"></div>
+            </div>
+            <div class = "col-6 row">
+                {% if user %}
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> &nbsp; &nbsp;  Current price: </strong></label>
+                        <div class="col-6">
+                            <input name = "price" class="form-control" type="text">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="bid">Bid</button>
+                        </div>
+                    </div>
+                    {% if error == 'bid' %}
+                    <br/>
+                    <div class="row">
+                        <div class = 'col-1'></div>
+                        <div class = 'col-11'>
+                        <p style = 'text-align:center; color:red;'> Bidding not right. </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <br/>
+                    <div class = 'row'>
+                        <div class = 'col-4'></div>
+                        <div class = 'col-4'>
+                            <button type="submit" class="btn btn-danger" name ="submit" value="buyNow">Buy Now!</button>
+                        </div>
+                        <div class = 'col-4'></div>
+                    </div>
+                    {% if error == 'buyNow' %}
+                    <br/>
+                    <div class="row">
+                        <div class = 'col-1'></div>
+                        <div class = 'col-11'>
+                        <p style = 'text-align:center; color:red;'> Not enough money to buy now. </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+                {% else %}
+                <a href = "/login">Please Login to make a bid!</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <br/>
+    </div>
+
+    <br/><br/>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="http://127.0.0.1:5000/static/css/main.css">
+<title> Welcome! </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+<div style = "text-align:center">
+    
+    <h1> Confirmation Detail </h1>
+    
+    <p> Starting Date: <strong>{{start}}</strong></p>
+    <p> End Date: <strong>{{end}}</strong> </p>
+    <p> Total Cost: <strong> ${{cost}} AUD</strong></p>
+    
+    <div style = "row">
+        <form method = "POST">
+            <button class="btn btn-primary" type="submit" name ="buttonHit" value="confirm"> Confirm </button>
+            <button class="btn btn-primary" type="submit" name ="buttonHit" value="back">Back</button>
+        </form>
+        
+    </div>
+
+</div>
+
+{% endblock %}

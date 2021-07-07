@@ -1,0 +1,136 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Welcome! </title>
+{% endblock %}
+
+{% block content %}
+
+<br/><br/>
+
+<div class="container" style = "width:70%;">
+    <h1 style = "text-align: center"> Accomodation Notification </h1>
+    
+    <br/>
+    {% if not waitBooking and not otherPeopleBooking and not rejectedBooking%}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <h1 style = "text-align:center;"> No notification </h1>
+        <br/>
+    </div>
+    {% endif %}
+    
+    <! -- Waiting Booking -->
+    {% if waitBooking %}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <h2 style = "text-align: center"> Still waiting for response </h2>
+        <br/>
+        {% for booking in waitBooking %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="min-height:250px">
+        {% else %}
+        <div class="row color2" style="min-height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{booking[9]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Starting Date: </strong> {{booking[4]}} </p>
+                <p> <strong> Ending Date: </strong> {{booking[5]}} </p>
+                <p> <strong> Total Cost: </strong> ${{booking[6] * booking[7]}} AUD </p>
+                <p> <strong> Status: </strong> Waiting for host response </p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "/accomodation/{{booking[1]}}"><button class="btn btn-primary">Info</button></a>
+                    <a href = "/{{username}}/{{booking[0]}}/cancel"> <button class="btn btn-danger"> Cancel Booking</button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        <br/>
+    </div>
+    {% endif %}
+        
+    <! -- Rejected Booking -->
+    {% if rejectedBooking %}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <h2 style = "text-align: center"> Rejected Booking </h2>
+        <br/>
+        {% for booking in rejectedBooking %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="min-height:250px">
+        {% else %}
+        <div class="row color2" style="min-height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{booking[10]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Starting Date: </strong> {{booking[4]}} </p>
+                <p> <strong> Ending Date: </strong> {{booking[5]}} </p>
+                <p> <strong> Total Cost: </strong> ${{booking[6] * booking[7]}} AUD </p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "/accomodation/{{booking[1]}}"><button class="btn btn-primary">Info</button></a>
+                    <a href = "/{{username}}/{{booking[0]}}/remove"> <button class="btn btn-danger"> Remove </button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        <br/>
+    </div>
+    {% endif %}
+        
+    <! -- Other People Waiting Booking -->
+    {% if otherPeopleBooking %}
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <h2 style = "text-align: center"> People Booking </h2>
+        <br/>
+        {% for booking in otherPeopleBooking %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="min-height:250px">
+        {% else %}
+        <div class="row color2" style="min-height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{booking[10]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">
+                <p> <strong> Potential User: </strong> <a href = "/{{booking[9]}}"> {{booking[9]}} </a></p>
+                <p> <strong> Starting Date: </strong> {{booking[4]}} </p>
+                <p> <strong> Ending Date: </strong> {{booking[5]}} </p>
+                <p> <strong> Price: </strong> ${{booking[6]}} AUD </p>
+                <p> <strong> Status: </strong> Waiting for your response </p>
+                <div class="col-md-8" style = "text-align: center">
+                    <a href = "{{booking[0]}}/accept"><button class="btn btn-primary">Accept</button></a>
+                    <a href = "{{booking[0]}}/reject"><button class="btn btn-danger">Reject</button></a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        <br>
+    </div>
+    {% endif %}
+        
+    
+        
+    <br/><br/><br/>
+    
+</div>
+
+{% endblock %}

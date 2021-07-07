@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Result </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style = "width:80%;">
+    <div class="row" style = "min-height:500px;">
+        
+        <!-- Left Part - Option -->
+        <div class="col-3 cover2">
+            <form method = "post">
+                <div style = "position:fixed;">
+                    <br/>
+                    <div class = "col-md-12"> <h2 style="text-align:center;"> Result </h2> </div>
+                    <br/>
+                    <div class="col-md-12"><button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="priceLH">Sort by price (L -> H)</button></div>
+                    <br/>
+                    <div class="col-md-12"><button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="priceHL">Sort by price (H -> L)</button></div>
+                    <br/>
+                    <div class="col-md-12">
+                        <a href="/object">
+                            <button type="button" class="btn btn-dark" style="width:200px;" href="/object"> Back </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-9 cover1">
+            <hr/>
+            
+            {% if objectList %}
+            {% for object in objectList %}
+            
+            {% if loop.index%2 == 0 %}
+            <div class="row color1" style="min-height:300px">
+            {% else %}
+            <div class="row color2" style="min-height:300px">
+            {% endif %}
+                <hr/>
+                
+                <div class="col-4" style="margin-top:50px;">
+                    <img src = "{{object[10]}}" style = "width:250px; height:200px;">
+                </div>
+
+                <div class = "col"></div>
+                
+                <div class="col-7" style="margin-top:30px;">     
+                    <p> <strong> Owner: </strong> <a href = "{{object[1]}}"> {{object[1]}} </a> </p>
+                    <p> <strong> Address: </strong> {{object[2]}} </p>
+                    <p> <strong> Current Bidding Price: </strong> ${{object[6]}} AUD</p>
+                    <p> <strong> Buy Now Price: </strong> ${{object[7]}} AUD</p>
+                    <p> <strong> Type: </strong> {{object[8]}} </p>
+                    <p> <strong> Description: </strong> {{object[3]}} </p> 
+                    
+                    <div class="col-md-12" style = "text-align: center">
+                        <a href = "/object/{{object[0]}}"><button type="submit" class="btn btn-primary">Have a look!</button></a>
+                    </div> 
+                    <br/>
+                </div>
+            </div>
+            <hr/>
+            {% endfor %}
+            
+            {%endif%}
+            
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

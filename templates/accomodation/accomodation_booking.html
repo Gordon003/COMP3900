@@ -1,0 +1,100 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+
+<!-- Add an additional blue button style -->
+<style>
+.yui3-button {
+    margin:10px 0px 10px 0px;
+    color: #fff;
+    background-color: #3476b7;
+}
+</style>
+
+
+<title> Welcome! </title>
+{% endblock %}
+
+{% block content %}
+<br/>
+<div class="container cover1" style = "width:90%;">
+    
+    <div class="row">
+        
+        <div class ="col-1"></div>
+        
+        <div class = "col-10">
+    
+            <!-- Title -->
+            <h1 style = "text-align: center"> Booking Accomodation! </h1>
+            
+            <div style="text-align: center;">
+                <div class = "col-1"></div>
+                
+                <div class = "col-10" style="display: block;margin-left: auto;margin-right: auto;">
+                    <img src = "{{accomodation[8]}}" style = "width:150px; height:120px;margin-top:25px;">
+                    &ensp;
+                    <img src = "{{accomodation[9]}}" style = "width:150px; height:120px;margin-top:25px;">
+                    &ensp;
+                    <img src = "{{accomodation[10]}}" style = "width:150px; height:120px;margin-top:25px;">
+                    &ensp;
+                    <img src = "{{accomodation[11]}}" style = "width:150px; height:120px;margin-top:25px;">
+                </div>
+                
+                <div class = "col-1"></div>
+                
+                <br/>
+                <br/>
+            
+            </div>
+        </div>
+        
+        <div class="col-1"></div>
+    </div>
+    
+    <div class="row">
+        <div class ="col-2"></div>
+        
+        <div class ="col-4">
+            {% include 'accomodation/content1.html' %}
+        </div>
+        <div class ="col-4">
+            <form method = "POST" style="text-align:center;">
+                
+                <div class = "row">
+                    <p> Select Start Date: </p> &nbsp;&nbsp;
+                    <input type="date" name = "start_Date">
+                </div>
+                <br>
+                <div class = "row">
+                    <p> Select End Date: </p> &nbsp;&nbsp;&nbsp;
+                    <input type="date" name = "end_Date">
+                </div>
+                
+                <br/>
+                <p> Cost per day: <strong>${{accomodation[6]}} AUD</strong></p>
+
+                <br/>
+                <button type="submit" class="btn btn-primary" name ="button" value="confirm">Confirm</button>
+                <button type="submit" name ="button" value="back" class="btn btn-danger">Back</button>
+                <br/><br/>
+                {% if error == 'error1' %}
+                    <p style = 'color:red;'>Booking Cost exceed your balance.</p>
+                {% endif %}
+                {% if error == 'error2' %}
+                    <p style = 'color:red;'>Booking either in reversed, booked at those time or not inputed at all</p>
+                {% endif %}
+            </form>
+        </div>
+        
+        
+    </div>
+    
+    <br/>
+
+</div>
+
+<br/><br/>
+
+{% endblock %}

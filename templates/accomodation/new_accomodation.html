@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Result </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:75%;">
+    
+    <!-- Title -->
+    <br/> <h1 style = "text-align: center"> New Accomodation </h1> <br/>
+    
+    <div class = "row cover1">
+    
+        <div class="col-1"></div>
+
+        <div class="col-10">
+
+            <br/>
+            
+            <form method = "POST" enctype = "multipart/form-data" style="text-align:center;">
+                <div style="margin-right:130px; text-align:right;">
+
+                    <!-- Address/Location -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Accomodation Address: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <input name = "address" class="form-control" type="text" value = {{previousInput[0]}}>
+                            {% else %}
+                            <input name = "address" class="form-control" type="text">
+                            {% endif %}
+                            {% if error == "address" %}
+                            <p style = "text-align:center;color:red;"> Address either not inputed or not correct </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Bedroom -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> # of bedroom: </strong></label>
+                        <div class="col-8">
+                            <select class="form-control" name="bedroom">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4+</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <!-- Washroom -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> # of washroom: </strong></label>
+                        <div class="col-8">
+                            <select class="form-control" name="washroom">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4+</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Price: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <input name = "price" class="form-control" type="text" value = {{previousInput[3]}}>
+                            {% else %}
+                            <input name = "price" class="form-control" type="text">
+                            {% endif %}
+                            {% if error == "price" %}
+                            <p style = "text-align:center;color:red;"> Price either not inputed or not a number </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Type: </strong></label>
+                        <div class="col-8">
+                            <select class="form-control" name="type">
+                            <option>House</option>
+                            <option>Apartment</option>
+                            <option>Mansion</option>
+                            <option>Other</option>
+                          </select>             
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Description: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <textarea class="form-control" rows="5" name="description" value = {{previousInput[5]}}></textarea>
+                            {% else %}
+                            <textarea class="form-control" rows="5" name="description"></textarea>
+                            {% endif %}
+                            {% if error == "description" %}
+                            <p style = "text-align:center;color:red;"> Description not inputed </p>
+                            {% endif %}           
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Main Image: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "mainImage" />
+                        </div>
+                    </div>
+
+                    <!-- Side Image 1 -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Extra Image 1: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "sideImage1" />
+                        </div>
+                    </div>
+
+                    <!-- Side Image 2 -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Extra Image 2: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "sideImage2" />
+                        </div>
+                    </div>
+
+                    <!-- Side Image 3 -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Extra Image 3: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "sideImage3" />
+                        </div>
+                    </div>
+                </div>
+                {% if error == "image" %}
+                <p style = "text-align:center;color:red;"> Images not inputed </p>
+                {% endif %}    
+                {% if error == "price" %}
+                <p style = "text-align:center;color:red;"> Need $10 to successfully advertise accomodation </p>
+                {% endif %} 
+                <! -- Button -->
+                <div class="col-12" style = "text-align: center">
+                    <button type="submit" class="btn btn-primary">Add accomodation</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-1"></div>
+        
+    </div>
+        
+</div>
+
+<br/><br/> <br/>
+
+{% endblock %}

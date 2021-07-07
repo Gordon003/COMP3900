@@ -1,0 +1,122 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../static/css/main.css">
+<title> Welcome! </title>
+{% endblock %}
+
+{% block content %}
+
+<br/><br/>
+
+<div class="container" style = "width:90%">
+    
+    <div class = "row">
+    
+        <div class="col-2"></div>
+        
+        <div class="col-8 cover1">
+            
+            <br/>
+            <!-- Title -->
+            <h1 style = "text-align: center"> New User </h1>
+            <br/>
+
+            <!-- Submit -->
+            <form method = "POST" enctype = "multipart/form-data" style="text-align:center;">
+                    <br/>
+                    <!-- Username -->
+                    <div class="form-group row">
+
+                      <label class="col-4 col-form-label"><strong> Username: </strong></label>
+                      <div class="col-7">
+                          {% if previousInput and previousInput[0] %}
+                          <input name = "username" class="form-control" type="text" value="{{previousInput[0]}}">
+                          {% else %}
+                          <input name = "username" class="form-control" type="text">
+                          {% endif %}
+                      </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group row">
+                      <label class="col-4 col-form-label"><strong> Password: </strong></label>
+                      <div class="col-7">
+                        <input name = "password" class="form-control" type="password">
+                      </div>
+                    </div>
+
+                    <!-- Password again -->
+                    <div class="form-group row">
+                      <label class="col-4 col-form-label"><strong> Enter Password again: </strong></label>
+                      <div class="col-7">
+                        <input name = "password2" class="form-control" type="password">
+                      </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group row">
+                      <label class="col-4 col-form-label"><strong> Phone #: </strong></label>
+                      <div class="col-7">
+                          {% if previousInput and previousInput[1] %}
+                          <input name = "phone" class="form-control" type="text" value="{{previousInput[1]}}">
+                          {% else %}
+                          <input name = "phone" class="form-control" type="text">
+                          {% endif %}
+                      </div>
+                    </div>
+
+                    <!-- Address/Location -->
+                    <div class="form-group row">
+                      <label class="col-4 col-form-label"><strong> Address: </strong></label>
+                      <div class="col-7">
+                          {% if previousInput and previousInput[2] %}
+                          <input name = "address" class="form-control" type="text" value="{{previousInput[2]}}">
+                          {% else %}
+                          <input name = "address" class="form-control" type="text">
+                          {% endif %}
+                      </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group row">
+                      <label class="col-4 col-form-label"><strong> Email: </strong></label>
+                      <div class="col-7">
+                          {% if previousInput and previousInput[3] %}
+                          <input name = "email" class="form-control" type="text" value="{{previousInput[3]}}">
+                          {% else %}
+                          <input name = "email" class="form-control" type="text">
+                          {% endif %}
+                      </div>
+                    </div>
+
+                    <!-- Icon -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Select Icon: </strong></label>
+                        <div class="col-8">
+                            <input type = "file" name = "file" />
+                        </div>
+                    </div>
+
+                <!-- Error indication -->
+                <div class="col-12" style = "text-align: center">
+                    <p> {{error}} </p>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <br/>
+                <div class="col-12" style = "text-align: center">
+                    <a href = "/login"> Already have an account? Login! </a>
+                </div>
+                <br/>
+            </form>
+        </div>
+
+        <div class="col-2"></div>
+        
+    </div>
+</div>
+
+<br/><br/>
+
+{% endblock %}

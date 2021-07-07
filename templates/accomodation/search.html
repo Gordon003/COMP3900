@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Accomodation Result </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style = "width:80%;">
+    <div class="row" style = "min-height:500px;">
+        
+        <!-- Left Part - Option -->
+        <div class="col-3 cover2">
+            <form method = "post">
+                <div style = "position:fixed;">
+                    <br/>
+                    <div class = "col-md-12"> <h2 style="text-align:center;"> Result </h2> </div>
+                    <br/>
+                    <div class="col-md-12"><button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="priceLH">Sort by price (L -> H)</button></div>
+                    <br/>
+                    <div class="col-md-12"><button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="priceHL">Sort by price (H -> L)</button></div>
+                    <br/>
+                    <div class="col-md-12"> <button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="House">Get Houses</button></div>
+                    <br/>
+                    <div class="col-md-12"> <button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="Apartment">Get Apartments</button></div>
+                    <br/>
+                    <div class="col-md-12"> <button type="submit" class="btn btn-dark" style="width:200px;" name ="submit" value="Mansion">Get Mansion</button></div>
+                    <br/>
+                    <div class="col-md-12">
+                        <a href="/accomodation">
+                            <button type="button" class="btn btn-dark" style="width:200px;" href="/accomodation"> Back </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-9 cover1">
+            <hr/>
+            
+            {% if objectList %}
+            {% for object in objectList %}
+            
+            {% if loop.index%2 == 0 %}
+            <div class="row color1" style="height:300px">
+            {% else %}
+            <div class="row color2" style="height:300px">
+            {% endif %}
+                <hr/>
+                
+                <div class="col-4" style="margin-top:50px;">
+                    <img src = "{{object[8]}}" style = "width:250px; height:200px;">
+                </div>
+
+                <div class = "col"></div>
+                
+                <div class="col-7" style="margin-top:30px;">     
+                    <p> <strong> Owner: </strong>{{object[1]}} </p>
+                    <p> <strong> Address: </strong> {{object[2]}} </p>
+                    <p> <strong> Price: </strong> ${{object[6]}} AUD</p>
+                    <p> <strong> Type: </strong> {{object[7]}} </p>
+                    <p> <strong> Description: </strong> {{object[5]}} </p> 
+                    
+                    <div class="col-md-12" style = "text-align: center">
+                        <a href = "/accomodation/{{object[0]}}"><button type="submit" class="btn btn-primary"> Info </button></a>
+                        {% if user %}
+                        <a href = "/accomodation/{{object[0]}}/report"><button type="submit" class="btn btn-danger"> Report </button></a>
+                        {% endif %}
+                    </div> 
+                </div>
+            </div>
+            <hr/>
+            {% endfor %}
+            
+            {% else %}
+            <h1 style = 'text-align:center;'> No Result!</h1>
+            
+            {%endif%}
+            
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

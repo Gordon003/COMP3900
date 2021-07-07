@@ -1,0 +1,147 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../static/css/main.css">
+<title> Editing {{username}} </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style = "width:80%">
+    
+    <div class="row">
+        
+        <div class ="col-1"></div>
+        
+        <div class = "col-10">
+    
+            <!-- Title -->
+            <h1 style = "text-align: center"> Editing {{username}} </h1>
+            <br/>
+            
+            <div class = "cover1" style="text-align:center">
+                <br/>
+                
+                <!-- Username -->
+                <h4> Username </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Username: </strong></label>
+                        <div class="col-6">
+                            <input name = "username" class="form-control" type="text" placeholder={{user[0]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="name">Update</button>
+                        </div>
+                        {% if error == 'name' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Name either are not inputed or the same. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Password -->
+                <h4> Password </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Password: </strong></label>
+                        <div class="col-6"> <input name = "password1" class="form-control" type="password"> </div>
+                    </div>
+                    <br/>
+                    <div class = "row">
+                        <label class="col-4 col-form-label"  style="text-align:right;"><strong> Enter Password again: </strong></label>
+                        <div class = "col-6"><input name = "password2" class="form-control" type="password"></div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="password">Update</button>
+                        </div>
+                        {% if error == 'password' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Password either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Phone -->
+                <h4> Phone </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Phone: </strong></label>
+                        <div class="col-6">
+                            <input name = "phone" class="form-control" type="text" placeholder={{user[1]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="phone">Update</button>
+                        </div>
+                        {% if error == 'phone' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Phone Number either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Address/Location -->
+                <h4> Address </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Address: </strong></label>
+                        <div class="col-6">
+                            <input name = "address" class="form-control" type="text" placeholder={{user[2]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="address">Update</button>
+                        </div>
+                        {% if error == 'address' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Address either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Email -->
+                <h4> Email </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Address: </strong></label>
+                        <div class="col-6">
+                            <input name = "email" class="form-control" type="text" placeholder={{user[3]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="email">Update</button>
+                        </div>
+                        {% if error == 'email' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Email either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+            </div>
+        </div>
+            
+        <div class ="col-1"></div>
+        
+    </div>
+    
+    <br/>
+    
+    <div class="col-md-12" style = "text-align: center">
+        <a href="/{{user[0]}}"><button class="btn btn-primary" style="width:200px;"> Back </button></a>
+    </div>
+    
+    <br/>
+        
+</div>
+
+{% endblock %}

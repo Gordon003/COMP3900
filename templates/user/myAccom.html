@@ -1,0 +1,67 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> My Accomodation/Object </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:70%;">
+    
+    <!-- Accomodation  List -->
+    <br/>
+    <h1 style = "text-align: center"> My Accomodation </h1>
+    <br/>
+    
+    <div class="col-12" style = "background-color: rgba(255, 255, 255, 0.5);">
+        <br/>
+        <hr/>
+        <!-- Access each accomodation -->
+        {% if accomodationList %}
+        {% for accom in accomodationList %}
+        {% if loop.index%2 == 0 %}
+        <div class="row color1" style="height:250px">
+        {% else %}
+        <div class="row color2" style="height:250px">
+        {% endif %}
+            <div class = "col"></div>
+            <div class="col-4">
+                <img src = "{{accom[8]}}" style = "width:250px; height:200px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-6" style="margin-top:20px;">               
+                <p> <strong> Address: </strong> {{accom[2]}} </p>
+                <p> <strong> Description: </strong> {{accom[7]}} </p> 
+                <p> <strong> Price: </strong> ${{accom[6]}} AUD</p>
+                <p> <strong> Description: </strong> {{accom[5]}} </p>
+                <div class="col-md-9" style = "text-align: center">
+                    <a href = "/{{username}}/check_Accom/{{accom[0]}}"><button class="btn btn-primary">Check Booking</button></a>
+                    <a href = "/{{username}}/edit_Accom/{{accom[0]}}"><button class="btn btn-warning">Edit</button></a>
+                    <a href = "/{{username}}/delete_Accom/{{accom[0]}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {% endfor %}
+        {% else %}
+        <div class="row">
+            <div class="col-md-12" style = "text-align: center">
+                <h2> No accomodation</h2>
+            </div>
+        </div>
+        <hr/>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12" style = "text-align: center">
+                <a href="/{{username}}/add_New_Accom"><button class="btn btn-primary">Add more accomodation</button></a>
+            </div>   
+        </div>
+        <br/>
+    </div>
+        
+    <br/><br/><br/>
+    
+</div>
+
+{% endblock %}

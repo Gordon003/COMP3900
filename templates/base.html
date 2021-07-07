@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <link rel="icon" href="../../../static/images/asd.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+        {% block title %}
+        {% endblock %}
+
+    </head>
+    
+    <body>
+        
+        <!-- Top Navigation Bar -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <!-- Logo -->
+            <!--<a class="navbar-brand" href="/">RoomLocate.com</a>-->
+            <a class="navbar-brand" href="/">
+                <img src = "../../../../../static/images/logo.png" style="width:90px;height:40px;">
+            </a>
+            
+            <div class="collapse navbar-collapse"> 
+                <!-- Left Part of navbar -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accomodation">Find Accomodation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/object">Find Object</a>
+                    </li>
+                    
+                    {% if user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My Stuff
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/{{user[0]}}/myAccomodation">My Accomodation</a>
+                            <a class="dropdown-item" href="/{{user[0]}}/my_Booking">My Confirmed Booking</a>
+                            <a class="dropdown-item" href="/{{user[0]}}/myObject">My Object</a>
+                            <a class="dropdown-item" href="/{{user[0]}}/my_Bought_Object">My Bought Object</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Notification
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/{{user[0]}}/my_Accomodation_Notification">Accomodation Notification</a>
+                            <a class="dropdown-item" href="/{{user[0]}}/my_Object_Notification">Object Notification</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+                
+                <!-- Right Part of navbar -->
+                <ul class="navbar-nav ml-auto">
+                    {% if user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/{{user[0]}}" style = "margin-right:10px; margin-top:5px;"> {{user[0]}} </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style = "margin-right:10px; margin-top:5px;"> <strong> Balance: ${{user[4]}} </strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/{{user[0]}}">
+                            <img src = "../../../../{{user[5]}}" style="width:50px;height:50px;">
+                        </a>
+                    </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/login" style = "margin-right:10px; margin-top:5px;"> Login </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login">
+                            <img src = "../../../../static/images/no_user.png" alt ="No user"  style="width:50px;height:50px;">
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+        </nav>
+        
+        <!-- Body content -->
+        {% block content %}{% endblock %}
+        
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

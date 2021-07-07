@@ -1,0 +1,53 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Detail </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:90%;">
+    
+    <!-- Accomodation -->
+    <br/>
+    <div class="col-12 cover1">
+        
+        <!-- Title -->
+        <br/> <h1 style="text-align: center"> Current Booking </h1> <hr/>
+        
+        <!-- Top Part --> 
+        <div class="row" style = "background-color: rgba(224,255,255,0.7); min-height:350px;">
+            <div class = "col"></div>
+            <div class="col-3">
+                <img src = "{{accomodation[8]}}" style = "width:325px; height:250px;margin-top:25px;">
+            </div>
+            <div class = "col"></div>
+            <div class="col-7" style="margin-top:20px;">
+                {% if not confirmedBooking %}
+                <h3> No booking </h3>
+                {% endif %}
+                {% for booking in confirmedBooking %}
+                <h3><strong> Booking Number {{loop.index}}</strong></h3>
+                <p> <strong> User: </strong> <a href = "/{{booking[9]}}"> {{booking[9]}} </a></p>
+                <p> <strong> Starting Date: </strong> {{booking[4]}} </p>
+                <p> <strong> Ending Date: </strong> {{booking[5]}} </p>
+                <hr/>
+                {% endfor %}
+                
+                
+                <br/>
+                <a href="/{{user[0]}}/myAccomodation"><button class="btn btn-primary" style="width:200px;"> Back </button></a>
+            </div>
+            
+        </div>
+        
+        <hr/>
+        
+        <br/>
+    </div>
+
+    <br/><br/>
+</div>
+
+{% endblock %}

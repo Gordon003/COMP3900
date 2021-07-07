@@ -1,0 +1,155 @@
+{%extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Editing Accomodation </title>
+{% endblock %}
+
+{% block content %}
+
+<br/>
+
+<div class="container" style = "width:80%">
+    
+    <div class="row">
+        
+        <div class ="col-1"></div>
+        
+        <div class = "col-10">
+            <br/>
+            
+            <div class = "cover1" style="text-align: center;">
+                <br/>
+                
+                <! -- Title -->
+                <h1 style = "text-align: center"> Editing Accomodation </h1>
+                
+                <! -- Image -->
+                <div class = "row">
+                    <img src = "{{accomodation[8]}}" style = "width:250px; height:200px;margin-left:auto; margin-right:auto">
+                </div>
+                
+                <img src = "{{accomodation[9]}}" style = "width:150px; height:120px;margin-top:25px;">
+                <img src = "{{accomodation[10]}}" style = "width:150px; height:120px;margin-top:25px;">
+                <img src = "{{accomodation[11]}}" style = "width:150px; height:120px;margin-top:25px;">
+                <br/><br/>
+                
+                <!-- Address/Location -->
+                <h4> Address </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Enter New Address: </strong></label>
+                        <div class="col-6">
+                            <input name = "address" class="form-control" type="text" placeholder={{accomodation[2]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="address">Update</button>
+                        </div>
+                        {% if error == 'address' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Address either are not inputed or the same to the old one. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Bedroom -->
+                <h4> Bedroom </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Edit # of bedroom: </strong></label>
+                        <div class="col-6">
+                            <select class="form-control" name="bedroom">
+                                {% for i in range(1,5) %}
+                                {% if accomodation[3] == i%}
+                                <option selected> {{i}} </option>
+                                {% else %}
+                                <option> {{i}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="bedroom">Update</button>
+                        </div>
+                    </div>
+                </form>
+                <hr/>
+
+                <!-- Washroom -->
+                <h4> Washroom </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Edit # of washroom: </strong></label>
+                        <div class="col-6">
+                            <select class="form-control" name="washroom">
+                                {% for i in range(1,5) %}
+                                {% if accomodation[4] == i%}
+                                <option selected> {{i}} </option>
+                                {% else %}
+                                <option> {{i}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="washroom">Update</button>
+                        </div>
+                    </div>
+                </form>
+                <hr/>
+                
+                <!-- Price -->
+                <h4> Price </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Edit price: </strong></label>
+                        <div class="col-6">
+                            <input name = "price" class="form-control" type="text" placeholder={{accomodation[6]}}>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="price">Update</button>
+                        </div>
+                        {% if error == 'price' %}
+                        <div class="col-12">
+                            <p style = "margin-top:5px;color:red;"> Price either not inputed or not a number. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <hr/>
+                
+                <!-- Description -->
+                <h4> Desription </h4>
+                <form method = "post" style="text-align:center;">
+                    <div class="row">
+                        <label class="col-4 col-form-label" style="text-align:right;"><strong> Edit Desription: </strong></label>
+                        <div class="col-6">
+                            <textarea class="form-control" rows="5" name="description"> {{accomodation[5]}} </textarea>   
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" name ="submit" value="description">Update</button>
+                        </div>
+                    </div>
+                </form>
+                <hr/>
+
+            </div>
+        </div>
+            
+        <div class ="col-1"></div>
+        
+    </div>
+
+    <! -- Button -->
+    <div class="col-md-12" style = "text-align: center">
+        <a href="/{{user[0]}}/myAccomodation"><button class="btn btn-primary" style="width:200px;"> Back </button></a>
+        <a href="/{{user[0]}}/delete_Accom/{{accomodation[0]}}"><button class="btn btn-danger" style="width:200px;"> Delete </button></a>
+    </div>
+    
+    <br/>
+        
+</div>
+
+{% endblock %}

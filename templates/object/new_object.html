@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<link rel="stylesheet" href="../../static/css/main.css">
+<title> Result </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style = "width:75%;">
+    
+    <!-- Title -->
+    <br/> <h1 style = "text-align: center"> New Object </h1> <br/>
+    
+    <div class = "row cover1">
+    
+        <div class="col-1"></div>
+
+        <div class="col-10">
+
+            <br/>
+            
+            <form method = "POST" enctype = "multipart/form-data" style="text-align:center;">
+                <div style="margin-right:130px; text-align:right;">
+
+                    <!-- Address/Location -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Address: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <input name = "address" class="form-control" type="text" value = {{previousInput[0]}}>      
+                            {% else %}
+                            <input name = "address" class="form-control" type="text">    
+                            {% endif %}
+                        </div>
+                        <div class = 'col-4'></div>
+                        {% if error == 'address' %}
+                        <div class = "row" style = "text-align:center;">
+                            <p style = "color:red;"> Input either not an address or not inputed at all. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Minimum Price -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Minimum Bidding Price: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <input name = "minimumPrice" class="form-control" type="text" value = {{previousInput[1]}}>      
+                            {% else %}
+                            <input name = "minimumPrice" class="form-control" type="text">    
+                            {% endif %}            
+                        </div>
+                        <div class = 'col-4'></div>
+                        {% if error == 'minimumPrice' %}
+                        <div class = "row" style = "text-align:center;">
+                            <p style = "color:red;"> Price either not positive, not a number or not inputed at all. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Buy Now Price -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Buy Now Price: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <input name = "buyNowPrice" class="form-control" type="text" value = {{previousInput[2]}}>      
+                            {% else %}
+                            <input name = "buyNowPrice" class="form-control" type="text">    
+                            {% endif %}            
+                        </div>
+                        <div class = 'col-4'></div>
+                        {% if error == 'buyNowPrice' %}
+                        <div class = "row" style = "text-align:center;">
+                            <p style = "color:red;"> Price either not positive, not a number or is lower than minimum bidding price. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Type -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Type: </strong></label>
+                        <div class="col-8">
+                            <select class="form-control" name="type">
+                                {% for a in object_list %}
+                                {% if previousInput and a == previousInput[3] %}
+                                <option selected> {{a}} </option>
+                                {% else %}
+                                <option> {{a}} </option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"><strong> Description: </strong></label>
+                        <div class="col-8">
+                            {% if previousInput %}
+                            <textarea class="form-control" rows="5" name="description" value = {{previousInput[4]}}></textarea>    
+                            {% else %}
+                            <textarea class="form-control" rows="5" name="description"}></textarea>  
+                            {% endif %}  
+                        </div>
+                        <div class = 'col-4'></div>
+                        {% if error == 'description' %}
+                        <div class = "row" style = "text-align:center;">
+                            <p style = "color:red;"> Description not inputed at all. </p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Image -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Main Image: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "mainImage" />
+                        </div>
+                    </div>
+
+                    <!-- Side Image 1 -->
+                    <div class="form-group row">
+                        <div class = "col-4">
+                            <strong> Extra Image 1: </strong>
+                        </div>
+                        <div class="col-6">
+                            <input type = "file" name = "sideImage1" />
+                        </div>
+                    </div>
+                    
+                    {% if error == 'image' %}
+                    <div class = "row" style = "text-align:center;">
+                        <p style = "color:red;"> Images not inputted. </p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if error == 'money' %}
+                    <div class = "row" style = "text-align:center;">
+                        <p style = "color:red;"> Not enough money. Need $5 to successfully sell item. </p>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                
+                <! -- Button -->
+                <div class="col-12" style = "text-align: center">
+                    <button type="submit" class="btn btn-primary">Add object</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-1"></div>
+        
+    </div>
+        
+</div>
+
+<br/><br/> <br/>
+
+{% endblock %}
